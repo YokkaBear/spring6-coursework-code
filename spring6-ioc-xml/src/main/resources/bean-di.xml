@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+    <!-- bean属性通过setter注入 (di by setter)：先通过无参构造方法创建对象，然后通过setter注入属性 -->
+<!--    <bean id="book" class="com.cicc.iocxml.di.Book">-->
+<!--        <property name="bookName" value="Java"></property>-->
+<!--        <property name="author" value="wyj"></property>-->
+<!--    </bean>-->
+
+    <!--  bean属性通过constructor注入 (di by constructor)：直接通过有参构造方法创建对象 -->
+    <bean id="bookConstruct" class="com.cicc.iocxml.di.Book">
+        <constructor-arg name="bookName" value="Kotlin"></constructor-arg>
+        <constructor-arg name="author" value="wyj"></constructor-arg>
+    </bean>
+</beans>
