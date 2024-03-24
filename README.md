@@ -1,6 +1,11 @@
 # spring6-coursework-code
 Record spring6 learning process and example code
 
+- Environment
+  - jdk: 18.0.2
+  - maven: 3.9.6
+  - Idea intellij: 2023.3.4
+
 - 代码上传流程
   - git status // check to-be-uploaded files
   - git add .
