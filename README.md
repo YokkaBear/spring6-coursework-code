@@ -10,6 +10,7 @@ Record spring6 learning process and example code
   - git status // check to-be-uploaded files
   - git add .
   - git commit -m "commit message started with feat/fix/deploy/perf..."
+  - [optional | the first time only] git remote add origin xxx.git
   - git pull --rebase origin master // pull from temp pr branch: origin/master
   - git push origin master // push to temp pr branch
 - 代码主分支同步流程
