@@ -27,10 +27,17 @@ public class UserController {
 //        this.userService = userService;
 //    }
 
-    // No.4 形参上注入
+//    // No.4 形参上注入
+//    private UserService userService;
+//
+//    public UserController(@Autowired UserService userService) {
+//        this.userService = userService;
+//    }
+
+    // No.5 当只有一个有参构造函数，无需注解即可注入
     private UserService userService;
 
-    public UserController(@Autowired UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
