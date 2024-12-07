@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface UserMapper {
     // 一、两个一致
-    // 1. mapper映射文件的namespace和mapper接口全雷鸣一致
+    // 1. mapper映射文件的namespace和mapper接口全类名一致
     // 2. 映射文件中sql语句的id与mappder接口的方法名一致
     /**
      * 添加用户信息
