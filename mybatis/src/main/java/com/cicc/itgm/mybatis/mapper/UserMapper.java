@@ -35,4 +35,9 @@ public interface UserMapper {
      * 查询全部用户信息
      */
     List<User> getAllUsers();
+
+    /**
+     * 根据用户名查询用户信息
+     */
+    User getUserByUserName(String userName);
 }

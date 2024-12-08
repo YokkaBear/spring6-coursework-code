@@ -1,29 +1,57 @@
-<!--mybatis核心配置文件-->
 <?xml version="1.0" encoding="UTF-8" ?>
+<!--mybatis核心配置文件-->
 <!DOCTYPE configuration
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!--
+        <properties>标签：引入资源绑定文件xxx.properties，通过${}的方式访问其中设置好的值
+    -->
+    <properties resource="jdbc.properties"></properties>
+
     <!--log4j配置-->
     <settings>
         <setting name="logImpl" value="LOG4J"/>
     </settings>
 
-    <!--设置连接数据库的环境-->
+    <!--
+        <typeAliases>：类型别名标签
+        type: 全类名（包名.类名）
+        alias: 可不设置，默认别名为类名，此案例中即User
+        package: 以包为单位，将包下所有类名设置为默认类型别名
+    -->
+    <typeAliases>
+<!--        <typeAlias type="com.cicc.itgm.mybatis.pojo.User" alias="User"></typeAlias>-->
+        <package name="com.cicc.itgm.mybatis.pojo"/>
+    </typeAliases>
+
+    <!--
+        <environments>标签：设置连接数据库的环境
+        default关键字表示默认的数据库连接设置对应的id，id需保证全局唯一性
+        transactionManager关键字表示事务管理器，可选项 JDBC（JDBC原生事务管理方式，提交/回滚手动处理）/MANAGED（事务管理器被管理，比如Spring）
+        dataSource设置数据源，关键字type设置数据源类型，可选项 POOLED（使用数据库连接池缓存数据库连接）/UNPOOLED（不使用数据库连接池）/JNDI（使用上下文中的数据源）
+    -->
     <environments default="development">
         <environment id="development">
             <transactionManager type="JDBC"/>
                 <dataSource type="POOLED">
-                    <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                    <property name="url" value="jdbc:mysql://localhost:3306/mybatis"/>
-                    <property name="username" value="root"/>
-                    <property name="password" value="123456"/>
+                    <property name="driver" value="${jdbc.driver}"/>
+                    <property name="url" value="${jdbc.url}"/>
+                    <property name="username" value="${jdbc.username}"/>
+                    <property name="password" value="${jdbc.password}"/>
                 </dataSource>
         </environment>
     </environments>
 
     <!--引入映射文件-->
+    <!--
+        <mapper>标签：引入单个映射文件 resource值直接填入映射文件的项目路径
+        <package>标签：以包为单位引入映射文件，注意两个一致
+            1. resources中映射文件所在的目录结构与映射类的目录结构保持一致（在resources中创建目录时用"/"进行分隔，与在java目录下新建package的方式不同
+            2. 映射文件的文件名（UserMapper.xml）与映射类（UserMapper.java）保持一致
+    -->
     <mappers>
-        <mapper resource="mappers/UserMapper.xml"/>
+<!--        <mapper resource="mappers/UserMapper.xml"/>-->
+        <package name="com.cicc.itgm.mybatis.mapper"/>
     </mappers>
 </configuration>

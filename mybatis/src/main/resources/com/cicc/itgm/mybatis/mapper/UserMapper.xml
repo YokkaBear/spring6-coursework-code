@@ -30,6 +30,14 @@
 
     <!--List<User> getAllUsers();-->
     <select id="getAllUsers" resultType="com.cicc.itgm.mybatis.pojo.User">
-        select id, username, sex from user;
+<!--        select id, username, sex from user;-->
+        select * from user;
+    </select>
+
+    <!--User getUserByUserName(String userName);-->
+    <select id="getUserByUserName" resultType="User">
+<!--        单个参数情况：参数名不重要，可以任意赋值（不一定非得是userName），但${}情况下必须加上''-->
+        select * from user where username = #{userName}
+<!--        select * from user where username = '${userName}'-->
     </select>
 </mapper>
