@@ -1,8 +1,10 @@
 package com.cicc.itgm.mybatis.mapper;
 
 import com.cicc.itgm.mybatis.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * mapper映射接口
@@ -40,4 +42,24 @@ public interface UserMapper {
      * 根据用户名查询用户信息
      */
     User getUserByUserName(String userName);
+
+    /**
+     * 用户登录验证
+     */
+    User checkLogin(String userName, String password);
+
+    /**
+     * 用户登录验证（传参为Map）
+     */
+    User checkLoginByMap(Map<String, Object> map);
+
+    /**
+     * 通过实体类插入数据（传参为User对象）
+     */
+    Integer insertUserByDTO(User user);
+
+    /**
+     * 通过@Param命名参数的方式执行查询
+     */
+    User checkLoginByParam(@Param("username") String username, @Param("password") String password);
 }
