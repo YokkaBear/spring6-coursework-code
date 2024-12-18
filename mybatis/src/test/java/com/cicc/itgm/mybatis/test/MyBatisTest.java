@@ -11,7 +11,9 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MyBatisTest {
     @Test
@@ -65,13 +67,62 @@ public class MyBatisTest {
      * MyBatis获取参数类型的各种情况
      * 1. mapper接口方法参数为单个字面量参数
      *  可通过${}或#{}以任意名称（最好见名识义）获取参数值，需要注意${}的单引号问题
-     * todo
+     * 2. mapper接口参数为多个时
+     *  此时myBatis会将参数放在一个map哈希表中，键值对关系如下：
+     *  a. 以arg0, arg1为键，以参数为值
+     *  b. 以param1, param2为键，以参数为值
+     * 只需要通过${}货${}通过键的方式访问值，注意${}字符串拼接的单引号问题
+     * 3. 当参数为多个时，可手动将参数放在一个map中存储，访问参数值的方式同2
+     * 4. 当传参为实体类对象，参数访问方式同2，通过#{}或${}进行访问
+     * 5. 使用@Param注解命名参数：自定义myBatix参数map中的键，通过@Param注解实现。存储在map中的键值对关系如下：
+     *  a. 以@Param注解中的value（注解的值）为键
+     *  b. 以param1, param2为键
+     *  访问方式仍然可以用#{}或'${}'这两种方式
+     * 综上，整合成两种情况：
+     * a. 传参为实体类对象（案例4）
+     * b. 传参为@Param注解及参数（案例1,2,3,5，其实都可以合并成案例5）
      */
     @Test
     public void testSelect() throws IOException {
         SqlSession sqlSession = SqlSessionUtil.getSqlSession("mybatis-config.xml");
         UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         User user = userMapper.getUserByUserName("liudehua");
+        System.out.println(user);
+    }
+
+    @Test
+    public void testCheckLogin() throws IOException {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession("mybatis-config.xml");
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        User user = userMapper.checkLogin("liudehua", "556677");
+        System.out.println(user);
+    }
+
+    @Test
+    public void testCheckLoginByMap() throws IOException {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession("mybatis-config.xml");
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        Map<String, Object> map = new HashMap<>();
+        map.put("username", "liudehua");
+        map.put("password", "556677");
+        User user = userMapper.checkLoginByMap(map);
+        System.out.println(user);
+    }
+
+    @Test
+    public void testInsertUserByDTO() throws IOException {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession("mybatis-config.xml");
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        User user = new User(null, "liming", "123456", 50, "1", "liming@qq.com");
+        int result = userMapper.insertUserByDTO(user);
+        System.out.println(result);
+    }
+
+    @Test
+    public void testCheckLoginByParam() throws IOException {
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession("mybatis-config.xml");
+        UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        User user = userMapper.checkLoginByParam("liudehua", "556677");
         System.out.println(user);
     }
 }

@@ -5,15 +5,15 @@ package com.cicc.itgm.mybatis.pojo;
  */
 public class User {
     private Integer id;
-    private String userName;
+    private String username;
     private String password;
     private Integer age;
     private String sex;
     private String email;
 
-    public User(Integer id, String userName, String password, Integer age, String sex, String email) {
+    public User(Integer id, String username, String password, Integer age, String sex, String email) {
         this.id = id;
-        this.userName = userName;
+        this.username = username;
         this.password = password;
         this.age = age;
         this.sex = sex;
@@ -26,8 +26,8 @@ public class User {
         this.id = id;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {
@@ -50,8 +50,8 @@ public class User {
         return id;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -74,7 +74,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", userName='" + userName + '\'' +
+                ", userName='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", age=" + age +
                 ", sex='" + sex + '\'' +
