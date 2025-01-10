@@ -15,6 +15,7 @@
         <module>spring6-aop</module>
         <module>mybatis</module>
         <module>spring-junit</module>
+        <module>spring-jdbc-tx</module>
     </modules>
 
     <properties>
@@ -68,6 +69,14 @@
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
             <version>2.1.1</version>
+        </dependency>
+
+        <!-- Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version> <!-- 确保使用最新版本 -->
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>
