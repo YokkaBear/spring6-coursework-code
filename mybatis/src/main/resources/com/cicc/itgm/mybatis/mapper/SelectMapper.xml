@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--mapper映射文件-->
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cicc.itgm.mybatis.mapper.SelectMapper">
+    <!--User getUserById(@Param("id") String id);-->
+    <select id="getUserById" resultType="com.cicc.itgm.mybatis.pojo.User">
+        select * from user where id=#{id}
+    </select>
+
+    <!--List<User> getAllUsers();-->
+    <select id="getAllUsers" resultType="User">
+        select * from user
+    </select>
+
+    <!--Integer getCount();-->
+    <select id="getCount" resultType="java.lang.Integer">
+        select count(*) from user
+    </select>
+
+    <!--Map<String, Object> getUserByIdToMap(@Param("id") String id);-->
+    <select id="getUserByIdToMap" resultType="map">
+        select * from user where id=#{id}
+    </select>
+
+    <!--Map<String, Object> getAllUsersToMap();-->
+    <!--resultType指的是单个元素的类型，即一个集合中每个对象的类型（这个对象可以是一个实体类，也可以是一个Map）-->
+    <select id="getAllUsersToMap" resultType="map">
+        select * from user
+    </select>
+
+</mapper>
