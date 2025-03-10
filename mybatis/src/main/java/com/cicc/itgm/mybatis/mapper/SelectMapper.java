@@ -38,4 +38,18 @@ public interface SelectMapper {
 //    List<Map<String, Object>> getAllUsersToMap();
     @MapKey("id")
     Map<String, Object> getAllUsersToMap();
+
+    /**
+     * 测试模糊查询
+     * @param mohu
+     * @return List<User>
+     */
+    List<User> testMohu(@Param("mohu") String mohu);
+
+    /**
+     * 测试自增主键
+     * @param user
+     * @return
+     */
+    Integer insertUser(User user);
 }

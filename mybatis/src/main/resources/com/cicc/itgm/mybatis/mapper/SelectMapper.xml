@@ -30,4 +30,16 @@
         select * from user
     </select>
 
+    <!--List<User> testMohu(@Param("mohu") String mohu);-->
+    <select id="testMohu" resultType="User">
+<!--        select * from user where username like '%${mohu}%'-->
+<!--        select * from user where username like concat('%', #{mohu}, '%')-->
+        select * from user where username like "%"#{mohu}"%"
+    </select>
+
+    <!--Integer insertUser(User user);-->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        insert into user values(null, #{username}, #{password}, #{age}, #{sex}, #{email})
+    </insert>
+
 </mapper>
